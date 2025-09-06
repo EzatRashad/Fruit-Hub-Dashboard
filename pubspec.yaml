@@ -41,6 +41,7 @@ dependencies:
   flutter_svg: null
   cached_network_image: null
   intl: null
+  firebase_core: 
   flutter_localization: ^0.3.3
 dev_dependencies:
   flutter_launcher_icons: null

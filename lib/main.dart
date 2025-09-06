@@ -1,12 +1,18 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:frut_hub_dashboard/core/functions/on_generate_route.dart';
 import 'package:frut_hub_dashboard/feature/dashboard/presentation/views/dashboard_view.dart';
+import 'package:frut_hub_dashboard/firebase_options.dart';
 import 'package:frut_hub_dashboard/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'core/utils/app_theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //   await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
   runApp(const MyApp());
 }
 
@@ -25,7 +31,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: S.delegate.supportedLocales,
-      locale: const Locale('ar'),
+      //locale: const Locale('ar'),
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: AppTheme.currentTheme,
