@@ -9,12 +9,7 @@ class DashboardViewBody extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.grey.shade100,
-        appBar: AppBar(
-          title: const Text("Fruit Hub Dashboard"),
-          centerTitle: true,
-          elevation: 0,
-          backgroundColor: Colors.green.shade600,
-        ),
+       
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -99,34 +94,35 @@ class DashboardCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { 
     return InkWell(
       borderRadius: BorderRadius.circular(20),
       onTap: () {
         // TODO: Add navigation logic
       },
       child: Container(
-        decoration: BoxDecoration(
+      decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [color.withOpacity(0.2), color.withOpacity(0.05)],
+            colors: [color.withAlpha(51), color.withAlpha(13)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: color.withOpacity(0.2),
+              color: color.withAlpha(51),
               blurRadius: 8,
               offset: const Offset(2, 4),
             ),
           ],
         ),
+
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
               radius: 28,
-              backgroundColor: color.withOpacity(0.15),
+              backgroundColor: color.withAlpha(38),
               child: Icon(icon, size: 32, color: color),
             ),
             const SizedBox(height: 12),
