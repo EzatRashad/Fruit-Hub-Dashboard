@@ -123,12 +123,18 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                     ],
                   ),
                   20.ph,
-                  CustomTextFormFiled(
-                    onSaved: (value) {
-                      description = value ?? '';
-                    },
-                    hintText: "Product Description",
-                    maxLines: 4,
+                  Container(
+                    constraints: BoxConstraints(
+                      maxHeight: 150,
+                    ),
+                    child: CustomTextFormFiled(
+                      
+                      onSaved: (value) {
+                        description = value ?? '';
+                      },
+                      hintText: "Product Description",
+                      maxLines: null,
+                    ),
                   ),
                   30.ph,
                   ElevatedButton.icon(
