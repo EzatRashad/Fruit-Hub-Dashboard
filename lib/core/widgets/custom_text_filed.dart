@@ -1,30 +1,38 @@
 import 'package:flutter/material.dart';
 
-import '../utils/app_colors.dart'; 
+import '../utils/app_colors.dart';
 
 class CustomTextFormFiled extends StatelessWidget {
   const CustomTextFormFiled(
       {super.key,
-      required this.controller,
+      this.controller,
+      this.maxLines = 1,
       this.obscureText = false,
       required this.hintText,
       this.suffixIcon,
       this.onSaved,
-      this.validator,
+      //this.validator,
       bool obcureText = false});
   final String hintText;
-  final TextEditingController controller;
+  final TextEditingController? controller;
   final bool obscureText;
   final Widget? suffixIcon;
-  final String? Function(String?)? validator;
+ // final String? Function(String?)? validator;
   final void Function(String?)? onSaved;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: maxLines,
       onTapOutside: (event) => FocusManager.instance.primaryFocus!.unfocus(),
       style: TextStyle(fontSize: 16),
-      validator: validator,
+      validator: (val) {
+        if (val == null || val.isEmpty) {
+          return 'This field is required';
+        }
+        return null;
+      },
       onSaved: onSaved,
       cursorColor: AppColors.primaryColor,
       controller: controller,
@@ -52,7 +60,7 @@ class CustomTextFormFiled extends StatelessWidget {
         ),
         errorMaxLines: 3,
         errorStyle: Theme.of(context).textTheme.titleSmall!.copyWith(
-              color: AppColors.primaryColor,
+              color: Colors.red,
             ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4),

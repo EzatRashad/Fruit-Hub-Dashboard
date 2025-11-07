@@ -39,6 +39,7 @@ dependencies:
   
   video_player: null
   flutter_svg: null
+  image_picker: ^1.1.2
   cached_network_image: null
   fl_chart: ^0.69.0
   intl: null
