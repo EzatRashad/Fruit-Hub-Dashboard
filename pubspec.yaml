@@ -43,6 +43,7 @@ dependencies:
   cached_network_image: null
   fl_chart: ^0.69.0
   intl: null
+  flutter_bloc: 
   get_it: 
   dartz: 
   firebase_core: 

@@ -174,7 +174,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                             description: description,
                             price: price,
                             category: selectedCategory ?? 'Uncategorized',
-                            imageUrl: selectedImage!.path,
+                            imageUrl: selectedImage!.path, image: selectedImage!,
                           );
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(

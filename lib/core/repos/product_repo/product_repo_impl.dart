@@ -1,11 +1,13 @@
-import 'package:frut_hub_dashboard/core/services/storage_service.dart';
+
+import 'package:dartz/dartz.dart';
 
 import '../../../feature/add_product/domain/entities/add_product_input_entity.dart';
+import '../../utils/failure.dart';
 import 'product_repo.dart';
 
 class ProductRepoImpl implements ProductRepo {
   @override
-  Future<void> addProduct(AddProductInputEntity addProductInputEntity) {
+  Future<Either<Failure, void>> addProduct(AddProductInputEntity addProductInputEntity) {
     // TODO: implement addProduct
     throw UnimplementedError();
   }

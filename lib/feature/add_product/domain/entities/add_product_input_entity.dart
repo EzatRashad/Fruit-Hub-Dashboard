@@ -1,10 +1,13 @@
+import 'dart:io';
+
 class AddProductInputEntity {
    final String name;
   final String code;
   final String description;
   final num price;
   final String category;
-  final String? imageUrl;
+   String? imageUrl;
+  final File image;
 
   AddProductInputEntity({
     required this.name,
@@ -13,6 +16,7 @@ class AddProductInputEntity {
     required this.price,
     required this.category,
       this.imageUrl,
+    required this.image,
   });
 
 
