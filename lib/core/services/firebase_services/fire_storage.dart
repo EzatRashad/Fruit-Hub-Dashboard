@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:path/path.dart' as b;
 
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:frut_hub_dashboard/core/services/storage_service.dart';
+import 'package:frut_hub_dashboard/core/services/firebase_services/storage_service.dart';
 
 class FireStorage implements StorageService {
   final storageReference = FirebaseStorage.instance.ref();

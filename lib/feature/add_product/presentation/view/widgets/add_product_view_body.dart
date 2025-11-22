@@ -1,9 +1,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frut_hub_dashboard/core/utils/utils.dart';
 import 'package:frut_hub_dashboard/core/widgets/custom_text_filed.dart';
 import 'package:frut_hub_dashboard/feature/add_product/domain/entities/add_product_input_entity.dart';
+import 'package:frut_hub_dashboard/feature/add_product/presentation/view/widgets/is_organic.dart';
 
+import '../../view_model/add_product_cubit.dart';
 import 'image_picker_section.dart';
 import 'is_featured.dart';
 
@@ -17,9 +20,10 @@ class AddProductViewBody extends StatefulWidget {
 class _AddProductViewBodyState extends State<AddProductViewBody> {
   final _formKey = GlobalKey<FormState>();
   late String name, code, description;
-  late num price;
+  late num price, expireationMonth, numOfCalories, stockQuantity;
 
   bool isFeatured = false;
+  bool isOrganic = false;
 
   String? selectedCategory;
   final List<String> categories = ['Fruits', 'Vegetables', 'Snacks', 'Drinks'];
@@ -61,6 +65,12 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                       this.isFeatured = isFeatured;
                     },
                   ),
+                  15.ph,
+                  IsOrganic(
+                    onChanged: (isOrganic) {
+                      this.isOrganic = isOrganic;
+                    },
+                  ),
                   30.ph,
                   Wrap(
                     spacing: spacing,
@@ -82,6 +92,33 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                             price = num.tryParse(value ?? '') ?? 0;
                           },
                           hintText: "Product Price",
+                        ),
+                      ),
+                      SizedBox(
+                        width: fieldWidth,
+                        child: CustomTextFormFiled(
+                          onSaved: (value) {
+                            expireationMonth = num.tryParse(value ?? '') ?? 0;
+                          },
+                          hintText: "expiry Month",
+                        ),
+                      ),
+                      SizedBox(
+                        width: fieldWidth,
+                        child: CustomTextFormFiled(
+                          onSaved: (value) {
+                            numOfCalories = num.tryParse(value ?? '') ?? 0;
+                          },
+                          hintText: "num Of Calories",
+                        ),
+                      ),
+                      SizedBox(
+                        width: fieldWidth,
+                        child: CustomTextFormFiled(
+                          onSaved: (value) {
+                            stockQuantity = num.tryParse(value ?? '') ?? 0;
+                          },
+                          hintText: "stock Quantity",
                         ),
                       ),
                       SizedBox(
@@ -128,7 +165,6 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                       maxHeight: 150,
                     ),
                     child: CustomTextFormFiled(
-                      
                       onSaved: (value) {
                         description = value ?? '';
                       },
@@ -169,13 +205,23 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                           _formKey.currentState!.save();
                           AddProductInputEntity inputEntity =
                               AddProductInputEntity(
+                                reviews: [],
                             name: name,
                             code: code,
                             description: description,
                             price: price,
                             category: selectedCategory ?? 'Uncategorized',
-                            imageUrl: selectedImage!.path, image: selectedImage!,
+                            imageUrl: selectedImage!.path,
+                            image: selectedImage!,
+                            expiryMonths: expireationMonth.toInt(),
+                            numOfCalories: numOfCalories.toInt(),
+                            stockQuantity: stockQuantity.toInt(),
+                            isFeatured: isFeatured,
+                            isOrganic: isOrganic,
                           );
+                          context
+                              .read<AddProductCubit>()
+                              .addProduct(inputEntity);
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text('Product added successfully!'),

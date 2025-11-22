@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 
-import '../../services/storage_service.dart';
+import '../../services/firebase_services/storage_service.dart';
 import '../../utils/failure.dart';
 import 'image_repo.dart';
 
