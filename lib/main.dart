@@ -4,12 +4,18 @@ import 'package:frut_hub_dashboard/core/services/get_it_service.dart';
 import 'package:frut_hub_dashboard/feature/dashboard/presentation/views/dashboard_view.dart';
 import 'package:frut_hub_dashboard/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/utils/app_theme.dart';
+import 'core/utils/keyes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupGetIt();
+   await Supabase.initialize(
+    url: supabaseUrl,
+    anonKey: supabaseAnonKey,
+  );
   //   await Firebase.initializeApp(
   //   options: DefaultFirebaseOptions.currentPlatform,
   // );
