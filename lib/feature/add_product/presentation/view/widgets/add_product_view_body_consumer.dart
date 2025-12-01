@@ -17,6 +17,8 @@ class AddProductViewBodyConsumer extends StatelessWidget {
         if (state is AddProductSuccess) {
           "Product added successfully!"
               .showSnackbar(context: context, isSuccess: true);
+                        Navigator.of(context).pop();
+ 
           // Navigator.of(context).pushNamedAndRemoveUntil(
           //   LayoutView.routeName,
           //   (Route<dynamic> route) => false,

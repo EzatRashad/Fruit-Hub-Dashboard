@@ -1,24 +1,24 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:frut_hub_dashboard/core/functions/on_generate_route.dart';
+import 'package:frut_hub_dashboard/core/services/firebase_services/supabase_storage_service.dart';
 import 'package:frut_hub_dashboard/core/services/get_it_service.dart';
 import 'package:frut_hub_dashboard/feature/dashboard/presentation/views/dashboard_view.dart';
+import 'package:frut_hub_dashboard/firebase_options.dart';
 import 'package:frut_hub_dashboard/generated/l10n.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/utils/app_theme.dart';
-import 'core/utils/keyes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setupGetIt();
-   await Supabase.initialize(
-    url: supabaseUrl,
-    anonKey: supabaseAnonKey,
-  );
-  //   await Firebase.initializeApp(
-  //   options: DefaultFirebaseOptions.currentPlatform,
-  // );
+  
+  await SupabaseStorageService.initSupabase();
+  await SupabaseStorageService.createBucket('fruits_images');
+    await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );  setupGetIt();
+
   runApp(const MyApp());
 }
 

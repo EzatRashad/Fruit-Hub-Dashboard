@@ -222,12 +222,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                           context
                               .read<AddProductCubit>()
                               .addProduct(inputEntity);
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Product added successfully!'),
-                              backgroundColor: Colors.green,
-                            ),
-                          );
+                          
                         }
                       }
                     },
