@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frut_hub_dashboard/core/utils/utils.dart';
 import 'package:frut_hub_dashboard/core/widgets/custom_text_filed.dart';
-import 'package:frut_hub_dashboard/feature/add_product/domain/entities/add_product_input_entity.dart';
+import 'package:frut_hub_dashboard/feature/add_product/domain/entities/product_entity.dart';
 import 'package:frut_hub_dashboard/feature/add_product/presentation/view/widgets/is_organic.dart';
 
 import '../../view_model/add_product_cubit.dart';
@@ -203,9 +203,8 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                       } else {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          AddProductInputEntity inputEntity =
-                              AddProductInputEntity(
-                                reviews: [],
+                          ProductEntity inputEntity = ProductEntity(
+                            reviews: [],
                             name: name,
                             code: code,
                             description: description,
@@ -222,7 +221,6 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                           context
                               .read<AddProductCubit>()
                               .addProduct(inputEntity);
-                          
                         }
                       }
                     },
